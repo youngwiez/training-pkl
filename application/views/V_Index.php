@@ -204,34 +204,20 @@
                 $('#subdistrict').html(options)
             })
 
-            $('#checkout-form').submit(function(event) {
-                event.preventDefault();
-                
-                var isValid = true;
-                $('#checkout-form input[required], #checkout-form select[required]').each(function() {
-                    if ($(this).val() === '') {
-                        isValid = false;
-                        return false;
-                    }
-                });
+            $('#checkout-form').on('submit', function(e) {
+                e.preventDefault();
+                alert('Berhasil Checkout')
+            })
 
-                if (isValid) {
-                    alert('Berhasil Checkout');
+            $('#redeem-form').submit(function() {
+                let value = $('#redeem-code').val()
+                let redeem = 'PKLQUICK'
+                if (value === redeem) {
+                    alert('Kode promo berhasil digunakan!')
                 } else {
-                    alert('Silakan isi semua field yang diperlukan');
+                    alert('Kode promo gagal digunakan.')
                 }
-            });
-
-            $('#redeem-form').submit(function(event) {
-                event.preventDefault();
-                let promoCode = $('#redeem-code').val();
-
-                if (promoCode === 'PKLQUICK') {
-                    alert('Kode promo berhasil digunakan!');
-                } else {
-                    alert('Kode promo gagal digunakan.');
-                }
-            });
+            })
         })
     </script>
 
