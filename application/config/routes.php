@@ -53,4 +53,4 @@ $route['default_controller'] = 'C_Index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['home'] = 'C_Index/index';
+$route['store']['post'] = 'C_Index/store';

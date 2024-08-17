@@ -6,12 +6,25 @@
         <div class="row">
             <div class="col-md-8">
                 <h4>Billing Address</h4>
-                <form action="#" id="checkout-form" method="POST">
+                <?php if ($success || $error) { ?>
+                    <?php
+                        $messageAlert = !empty($error) ? $error : $success;
+                    ?>
+                    <div class="alert alert-<?php echo !empty($error) ? "danger" : "success" ?>" role="alert">
+                        <?= !empty($error) ? "Gagal menyimpan data!" : $messageAlert ?>
+                    </div>
+                <?php } ?>
+                <form action="<?php echo base_url('list/form/store') ?>" id="checkout-form" method="POST">
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-6 col-sm-6">
-                                <label for="fname" class="form-label">First Name</label>
-                                <input type="text" name="fname" id="fname" class="form-control" required>
+                                <label for="fname" class="form-label">First Name <span style="color:red;">*</span></label>
+                                <div class="input-group has-validation">
+                                    <input type="text" name="fname" id="fname" class="form-control <?= $error['fname'] ? 'is-invalid' : '' ?>" placeholder="Input your first name" value="<?php echo $tempValue['fname'] ?>">
+                                    <div class="invalid-feedback">
+                                        <span class="colod:red;"><?= $error['fname'] ?></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-6 col-sm-6">
                                 <label for="lname" class="form-label">Last Name</label>
